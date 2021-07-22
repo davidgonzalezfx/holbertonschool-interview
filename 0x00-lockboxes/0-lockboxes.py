@@ -9,14 +9,12 @@ Write a method that determines if all the boxes can be opened
 
 def canUnlockAll(boxes):
     """Method that determines if all the boxes can be opened"""
-    util = list(boxes)
     available = [0]
-    for idx in range(len(boxes)):
-        for idx2, keys in enumerate(util):
-            if idx is not idx2:
-                for key in keys:
-                    available.append(key)
-        if idx not in available:
-            return False
-        available = []
-    return True
+    for key in available:
+        for key_list in boxes[key]:
+            if key_list not in available:
+                if key_list < len(boxes):
+                    available.append(key_list)
+    if len(available) == len(boxes):
+        return True
+    return False
